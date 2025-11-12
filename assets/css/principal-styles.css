@@ -1,121 +1,115 @@
-/* ===================================
-   IMPORTAÇÕES DE OUTROS ARQUIVOS CSS
-   =================================== */
-@import url('reset.css'); /* Reinicia estilos padrões do navegador */
-@import url('global.css'); /* Importa variáveis e estilos globais */
+/* ======================== */
+/* Reset e Global Styles */
+/* ======================== */
+@import url('reset.css');
+@import url('global.css');
 
-/* ===================================
-   ESTILO GERAL DO CORPO
-   =================================== */
+/* Fundo padrão do body */
 body {
-  background-color: var(--primary-color); /* Define a cor principal de fundo */
+  background-color: var(--primary-color);
 }
 
-/* Efeito de fundo semitransparente com imagem */
 body::before {
   content: "";
-  background-image: url('../images/spider-man-background.jpg'); /* Imagem padrão */
+  background-image: url('../images/spider-man-background.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
   width: 100%;
   height: 100%;
   position: absolute;
-  opacity: 0.2; /* Deixa o fundo translúcido */
-  transition: background-image 1s ease-in-out, opacity 1s ease-in-out; /* Transições suaves */
+  opacity: 0.2; /* Visível de forma sutil */
+  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
 }
 
-/* ===================================
-   BARRA DE NAVEGAÇÃO
-   =================================== */
+/* ======================== */
+/* MENU DE NAVEGAÇÃO */
+/* ======================== */
 nav {
-  padding: 1rem 0; /* Espaçamento vertical */
+  padding: 1rem 0;
   width: 100%;
-  text-align: center; /* Centraliza os itens */
+  text-align: center;
   position: relative;
 }
 
 .nav__item {
-  display: inline-block; /* Coloca os itens lado a lado */
-  text-transform: uppercase; /* Transforma o texto em maiúsculas */
-  margin: 0 1.25rem; /* Espaçamento lateral entre os itens */
+  display: inline-block;
+  text-transform: uppercase;
+  margin: 0 1.25rem;
 }
 
-/* Ícone central do menu (aranha) */
-#nav__icon {
+.nav__icon {
   width: 2.5rem;
   margin: 0 1.25rem;
-  vertical-align: middle; /* Alinha verticalmente com os textos */
+  vertical-align: middle;
 }
 
-/* ===================================
-   ÁREA PRINCIPAL (CARROSSEL 3D)
-   =================================== */
+/* ======================== */
+/* CARROSSEL 3D */
+/* ======================== */
 main {
   position: relative;
   display: flex;
+  justify-content: center;
+  perspective: 3000px; /* Profundidade 3D */
+}
+
+.cards-carousel {
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
-  perspective: 3000px; /* Define a profundidade 3D */
+  width: calc(100vw / 3 - 10%);
+  transform-style: preserve-3d; /* Necessário para 3D */
+  transition: transform 0.4s ease-in;
+  position: relative;
 }
 
-/* Cada card do carrossel */
-article {
-  border: 0.5rem solid white; /* Borda branca */
+/* Estilo de cada card */
+.card {
+  border: 0.5rem solid white;
   width: 100%;
-  height: 70vh; /* Ocupa 70% da altura da janela */
+  height: 70vh;
   position: absolute;
-  transition: filter 0.5s ease-in-out; /* Suaviza o efeito de filtro */
+  transition: filter .5s ease-in-out;
 }
 
-/* Define a posição 3D de cada card no carrossel */
-.card:nth-child(1) {
-  transform: rotateY(0deg) translateZ(50vw);
-}
+/* Posicionamento 3D */
+.cards-carousel > .card:nth-child(1) { transform: rotateY(0deg) translateZ(50vw); }
+.cards-carousel > .card:nth-child(2) { transform: rotateY(120deg) translateZ(50vw); }
+.cards-carousel > .card:nth-child(3) { transform: rotateY(240deg) translateZ(50vw); }
 
-.card:nth-child(2) {
-  transform: rotateY(120deg) translateZ(50vw);
-}
-
-.card:nth-child(3) {
-  transform: rotateY(240deg) translateZ(50vw);
-}
-
-/* ===================================
-   CONTEÚDO DOS CARDS
-   =================================== */
+/* Conteúdo dos cards */
 .card__background {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cobre todo o espaço do card */
+  object-fit: cover;
   position: absolute;
   opacity: 1;
-  transition: opacity 1s ease-in-out; /* Suaviza o aparecimento/desaparecimento */
+  transition: opacity 1s ease-in-out;
 }
 
 .card__image {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Mantém a proporção da imagem */
+  object-fit: contain;
   position: relative;
-  transition: 1s ease-in-out; /* Suaviza transformações */
+  transition: transform 1s ease-in-out;
 }
 
-/* Texto com o nome do ator */
-h2 {
+.card__title {
   font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
   position: absolute;
   width: 100%;
-  bottom: 0; /* Posicionado na base do card */
-  transition: bottom 1s ease-in-out; /* Suaviza a animação de movimento */
+  bottom: 0;
+  transition: bottom 1s ease-in-out;
 }
 
-/* ===================================
-   CONTROLES DO CARROSSEL
-   =================================== */
-#controller {
+/* ======================== */
+/* CONTROLES DO CARROSSEL */
+/* ======================== */
+.controller {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -125,7 +119,6 @@ h2 {
   width: 100%;
 }
 
-/* Estilo base dos botões de controle */
 .controller__button {
   display: flex;
   align-items: center;
@@ -133,27 +126,18 @@ h2 {
   width: 2.5rem;
   height: 2.5rem;
   border: 2px solid white;
-  border-radius: 50%; /* Formato circular */
+  border-radius: 50%;
   background-color: var(--primary-color);
   text-align: center;
   font-size: 1rem;
   font-weight: bold;
   cursor: pointer;
   z-index: 1;
-  transition: transform 0.3s ease-in-out; /* Efeito de zoom suave */
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Aumenta ligeiramente o botão ao passar o mouse */
-.controller__button:hover {
-  transform: scale(1.1);
-}
+.controller__button:hover { transform: scale(1.1); }
 
-/* Espaçamento entre os botões 01, 02 e 03 */
-.controller__button:nth-child(2) {
-  margin: 0 3.75rem;
-}
-
-/* Botão ativo (indica qual card está sendo exibido) */
 .controller__button--active {
   background-color: white;
   color: var(--primary-color);
@@ -161,65 +145,38 @@ h2 {
   outline: 0.125rem solid white;
 }
 
-/* Linha branca que aparece atrás dos botões */
-div {
+.controller__line {
   background-color: white;
   width: 50%;
   height: 2px;
   position: absolute;
+  bottom: 0;
+  left: 25%;
 }
 
-/* ===================================
-   ANIMAÇÕES DE HOVER (EFEITOS VISUAIS)
-   =================================== */
-
-/* Quando o mouse passa sobre um card */
+/* ======================== */
+/* HOVER NOS CARDS E FUNDO DINÂMICO */
+/* ======================== */
 .card--hovered .card__background {
   cursor: pointer;
-  opacity: 0; /* Some o fundo */
+  opacity: 0;
 }
 
-/* Aumenta e aplica sombra no herói */
 .card--hovered .card__image {
   transform: scale(1.4);
-  filter: drop-shadow(30px 10px 4px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(30px 10px 4px rgba(0,0,0,.5));
 }
 
-/* Troca o fundo da página dependendo do herói ativo */
-body#spider-man-01-hovered::before {
-  background-image: url('../images/pic-sm-bg-01.jpg');
-}
-
-body#spider-man-02-hovered::before {
-  background-image: url('../images/pic-sm-bg-02.jpg');
-}
-
-body#spider-man-03-hovered::before {
-  background-image: url('../images/pic-sm-bg-03.jpg');
-}
-
-/* Quando algum herói está ativo, o fundo fica totalmente visível */
-body[id^="spider-man-"]::before {
-  opacity: 1;
-}
-
-/* Deixa os cards inativos em preto e branco */
-body[id^="spider-man-"] .card:not(.card--hovered) {
-  filter: grayscale(100%);
-}
-
-/* Move o título para o centro do card ao passar o mouse */
-.card--hovered h2 {
+.card--hovered .card__title {
   bottom: 50%;
 }
 
-/* ===================================
-   CONFIGURAÇÃO DO CARROSSEL 3D
-   =================================== */
-#cards-carousel {
-  display: flex;
-  justify-content: center;
-  width: calc(100vw / 3 - 10%); /* Largura proporcional à tela */
-  transform-style: preserve-3d; /* Mantém o efeito 3D */
-  transition: transform 0.4s ease-in; /* Suaviza a rotação */
-}
+/* Alteração do fundo do body */
+body#spider-man-01-hovered::before { background-image: url('../images/pic-sm-bg-01.jpg'); }
+body#spider-man-02-hovered::before { background-image: url('../images/pic-sm-bg-02.jpg'); }
+body#spider-man-03-hovered::before { background-image: url('../images/pic-sm-bg-03.jpg'); }
+
+body[id^="spider-man-"]::before { opacity: 1; }
+
+/* Cards inativos em preto e branco */
+body[id^="spider-man-"] .cards-carousel > .card:not(.card--hovered) { filter: grayscale(100%); }

@@ -2,32 +2,28 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <!-- Garante compatibilidade com versões antigas do Internet Explorer -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
-  <!-- Define o layout responsivo para diferentes tamanhos de tela -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Importa o arquivo CSS principal -->
+  <!-- CSS principal -->
   <link rel="stylesheet" href="./assets/css/principal-styles.css">
 
-  <!-- Importa o script JavaScript, com defer para garantir que carregue após o HTML -->
+  <!-- JS principal, carregado de forma deferida -->
   <script src="./assets/scripts/script.js" defer></script>
 
   <title>Spider-Man | Multiversos</title>
 </head>
-
 <body>
   <!-- ======================== -->
-  <!-- NAVEGAÇÃO PRINCIPAL -->
+  <!-- MENU DE NAVEGAÇÃO -->
   <!-- ======================== -->
-  <nav aria-label="Menu principal">
+  <nav>
     <ul>
       <li class="nav__item"><a href="/">Página Inicial</a></li>
       <li class="nav__item"><a href="#">Tobey Maguire</a></li>
-      
-      <!-- Ícone central do menu -->
-      <li class="nav__item" id="nav__icon">
+
+      <!-- Ícone central -->
+      <li class="nav__item nav__icon">
         <img src="./assets/images/icons/spider.svg" alt="Logo Spider-Man Multiverse">
       </li>
 
@@ -37,104 +33,42 @@
   </nav>
 
   <!-- ======================== -->
-  <!-- CONTEÚDO PRINCIPAL -->
+  <!-- CARROSSEL 3D -->
   <!-- ======================== -->
   <main>
-    <!-- Carrossel 3D com os diferentes Homens-Aranha -->
-    <section 
-      id="cards-carousel" 
-      style="transform: translateZ(-40vw) rotateY(0deg);" 
-      aria-label="Carrossel de versões do Homem-Aranha"
-    >
-      
-      <!-- Card: Tobey Maguire -->
-      <article id="spider-man-01">
-        <a href="./pages/tobey-maguire/spiderman1.html">
-          <img 
-            class="card__background" 
-            src="./assets/images/pic-sm-bg-01.jpg" 
-            alt="Plano de fundo de Tobey Maguire"
-          >
-          <img 
-            class="card__image" 
-            src="./assets/images/spider-man-01.png" 
-            alt="Homem-Aranha interpretado por Tobey Maguire"
-          >
-          <h2>Tobey Maguire</h2>
-        </a>
-      </article>
+    <section class="cards-carousel">
+      <!-- Cada card é um link com imagem de fundo, imagem principal e título -->
+      <a href="./pages/tobey-maguire/spiderman1.html" class="card" id="spider-man-01">
+        <img class="card__background" src="./assets/images/pic-sm-bg-01.jpg" alt="Plano de fundo de Tobey Maguire">
+        <img class="card__image" src="./assets/images/spider-man-01.png" alt="Tobey Maguire">
+        <h2 class="card__title">Tobey Maguire</h2>
+      </a>
 
-      <!-- Card: Tom Holland -->
-      <article id="spider-man-02">
-        <a href="./pages/tom-holland/spiderman1.html">
-          <img 
-            class="card__background" 
-            src="./assets/images/pic-sm-bg-02.jpg" 
-            alt="Plano de fundo de Tom Holland"
-          >
-          <img 
-            class="card__image" 
-            src="./assets/images/spider-man-02.png" 
-            alt="Homem-Aranha interpretado por Tom Holland"
-          >
-          <h2>Tom Holland</h2>
-        </a>
-      </article>
+      <a href="./pages/tom-holland/spiderman1.html" class="card" id="spider-man-02">
+        <img class="card__background" src="./assets/images/pic-sm-bg-02.jpg" alt="Plano de fundo de Tom Holland">
+        <img class="card__image" src="./assets/images/spider-man-02.png" alt="Tom Holland">
+        <h2 class="card__title">Tom Holland</h2>
+      </a>
 
-      <!-- Card: Andrew Garfield -->
-      <article id="spider-man-03">
-        <a href="./pages/andrew-garfield/spiderman1.html">
-          <img 
-            class="card__background" 
-            src="./assets/images/pic-sm-bg-03.jpg" 
-            alt="Plano de fundo de Andrew Garfield"
-          >
-          <img 
-            class="card__image" 
-            src="./assets/images/spider-man-03.png" 
-            alt="Homem-Aranha interpretado por Andrew Garfield"
-          >
-          <h2>Andrew Garfield</h2>
-        </a>
-      </article>
-
+      <a href="./pages/andrew-garfield/spiderman1.html" class="card" id="spider-man-03">
+        <img class="card__background" src="./assets/images/pic-sm-bg-03.jpg" alt="Plano de fundo de Andrew Garfield">
+        <img class="card__image" src="./assets/images/spider-man-03.png" alt="Andrew Garfield">
+        <h2 class="card__title">Andrew Garfield</h2>
+      </a>
     </section>
   </main>
 
   <!-- ======================== -->
   <!-- CONTROLES DO CARROSSEL -->
   <!-- ======================== -->
-  <section id="controller" aria-label="Controles do carrossel">
-    <!-- Cada botão seleciona um card específico -->
-    <button 
-      id="1" 
-      onclick="selectCarouselItem(this)" 
-      class="controller__button controller__button--active" 
-      aria-pressed="true"
-    >
-      01
-    </button>
+  <section class="controller">
+    <!-- Botões do carrossel -->
+    <button id="1" class="controller__button controller__button--active" aria-pressed="true">01</button>
+    <button id="2" class="controller__button" aria-pressed="false">02</button>
+    <button id="3" class="controller__button" aria-pressed="false">03</button>
 
-    <button 
-      id="2" 
-      onclick="selectCarouselItem(this)" 
-      class="controller__button" 
-      aria-pressed="false"
-    >
-      02
-    </button>
-
-    <button 
-      id="3" 
-      onclick="selectCarouselItem(this)" 
-      class="controller__button" 
-      aria-pressed="false"
-    >
-      03
-    </button>
-
-    <!-- Elemento visual opcional, provavelmente usado para layout -->
-    <div aria-hidden="true"></div>
+    <!-- Linha visual auxiliar -->
+    <div class="controller__line"></div>
   </section>
 </body>
 </html>
